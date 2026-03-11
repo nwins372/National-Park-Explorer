@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PassportProvider } from "./context/PasswordContext";
+import { PassportProvider } from "./context/PassportContext";
 
 import NavBar from './components/NavBar';
 

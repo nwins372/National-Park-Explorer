@@ -1,0 +1,82 @@
+
+.park-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0 3rem 0;
+  font-family: var(--nav-font-family, system-ui, sans-serif);
+}
+
+.park-hero {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  background-color: #2c3e50;
+}
+
+.park-content {
+  padding: 2rem;
+}
+
+.park-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 1rem;
+}
+
+.park-title h1 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 2.5rem;
+}
+
+.park-title p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.park-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #34495e;
+  margin-bottom: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.info-section h3 {
+  color: #2c3e50;
+  margin-top: 0;
+  border-bottom: 1px solid #bdc3c7;
+  padding-bottom: 0.5rem;
+}
+
+.activity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.activity-tag {
+  background-color: #e0e6ed;
+  color: #2c3e50;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+p {
+    color: #2c3e50;
+}

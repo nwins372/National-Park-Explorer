@@ -1,48 +1,30 @@
-import { useState, useEffect } from 'react';
-import { fetchParks } from '../services/npsAPI';
+// We no longer need useState, useEffect, or fetchParks here
+import { usePassport } from '../context/PassportContext'; 
 import Map from '../components/Map/Map';
-
+import FeaturedParks from '../components/FeaturedParks/FeaturedParks';
+import './Home.css'; 
 
 export default function Home() {
-
-    const [parks, setParks] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const getParkData = async() => {
-            const parkData = await fetchParks();
-            const officialParks = parkData.filter((park) => {
-
-                const designation = park.designation || "";
-
-                const isStandardPark = designation.includes("National Park");
-
-                const isRedwood = park.parkCode === "redw";
-                const isAmericanSamoa = park.parkCode === "npsa";
-
-                return isStandardPark || isRedwood || isAmericanSamoa;
-            });
-
-            setParks(officialParks);
-            console.log("Park Names: ", officialParks.map(p => p.fullName));
-            setIsLoading(false);
-        };
-        getParkData();
-    }, []);
+  // Simply pull the cached data and loading status from Context
+  const { parks, isLoading } = usePassport();
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>National Park Explorer</h1>
+    <div className="home-container">
+      
+      <div className="hero-section">
+        <h1>National Park Explorer</h1>
+        <p>Plan your trips and stamp your digital passport.</p>
+      </div>
+
       {isLoading ? (
-        <p>Loading park data from NPS...</p>
+        <p className="loading-text">Loading park data from the National Park Service...</p>
       ) : (
-        <div>
-            <p>Successfully located {parks.length} parks</p>
-            <p><em>Check browser console</em></p>
-            <div style={{height: '400px', background: '#e0e0e0', marginTop: '20px'}}>
+        <>
+            <div className="map-wrapper">
                 <Map parks={parks} />
             </div>
-        </div>
+            <FeaturedParks parks={parks} />
+        </>
       )}
     </div>
   );
