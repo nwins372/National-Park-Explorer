@@ -1,7 +1,8 @@
 # National Park Explorer
-
-## Description.
-A full-stack web application designed to help users learn more about and track visits to any of the 63 official US National Parks. The National Park Service API was used to retrieve detailed park data. Also features an interactive map for exploration & dynamic park detail pages.
+![screenshot of project home page](home_screenshot1.png)
+![screenshot of park detail page](park_detail.png)
+## Description
+A web application designed to help users learn more about the 63 official US National Parks. The National Park Service API was used to retrieve detailed park data. Also features an interactive map for exploration & dynamic park detail pages.
 
 ## Technologies Used
 
@@ -14,17 +15,15 @@ A full-stack web application designed to help users learn more about and track v
 
 ### Prerequisites
 * Node.js and React.js installed
-* An active API key from the National Park Service (NPS API)
+* An active API key from the National Park Service (NPS API) https://www.nps.gov/subjects/developer/get-started.htm
 
-### Environment Variables
-Create a `.env` file in the root of your backend directory and add the following:
-```env
-DATABASE_URL="neon_connection_string"
-NPS_API_KEY="your_nps_api_key"
-PORT=5000
-```
+* Clone the repository: `git clone https://github.com/nwins372/National-Park-Explorer.git`
+* CD to the project directory `cd National-Park-Explorer` in, open up a terminal and run the command `npm install`
+* Create a .env file in the root directory and add your NPS API key `REACT_APP_NPS_API_KEY=api_key_here`
+* Finally, run the command `npm run dev`
 
 ### TODO:
-- Save visited parks
-- Ability to to review parks
-- Search for national monuments, trails, historic sites, and other places that are part of the NPS
+- Implement local storage or a backend database to allow users to save visited parks
+- Allow user to filter parks by state or available activities
+- Add user authentication and a review system for individual parks.
+- Expand search functionality to query national monuments, historic sites, and trails beyond the core 63 parks.

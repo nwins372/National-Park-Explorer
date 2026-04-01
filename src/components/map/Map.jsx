@@ -29,6 +29,7 @@ function MapResizer() {
       center={centerPosition}
       zoom={defaultZoom}
       style={{ height: '100%', width: '100%' }}
+      scrollWheelZoom={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -47,9 +48,10 @@ function MapResizer() {
 
 
           const parkIcon = divIcon({
-            className: `custom-marker`,
-            iconSize: [14, 14],
-            iconAnchor: [7, 7],
+        className: 'custom-leaflet-icon', 
+          html: `<div class="w-4 h-4 bg-emerald-700 border-2 border-white rounded-full shadow-md hover:scale-125 transition-transform"></div>`,
+          iconSize: [16, 16],
+          iconAnchor: [8, 8], // Centers the dot on the exact coordinate
           });
          
           return (

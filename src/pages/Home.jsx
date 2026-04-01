@@ -75,7 +75,7 @@ export default function Home() {
 
   return (
     <div className="bg-stone-50 font-sans text-stone-900 pb-20">
-      <div className="relative h-[60vh] flex flex-col items-center justify-center text-center px-4">
+      <div className="relative h-[40vh] flex flex-col items-center justify-center text-center px-4">
         {heroImage && (
           <>
             <img 

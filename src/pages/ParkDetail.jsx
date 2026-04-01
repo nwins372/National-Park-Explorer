@@ -51,11 +51,11 @@ export default function ParkDetail() {
   const galleryImages = park.images && park.images.length > 1 ? park.images.slice(1, 4) : [];
   const voicePhone = park.contacts?.phoneNumbers?.find(p => p.type === "Voice")?.phoneNumber;
   const email = park.contacts?.emailAddresses?.[0]?.emailAddress;
+  const activities = park?.activities || [];
 
   return (
     <div className="bg-stone-50 min-h-screen pb-20 font-sans text-stone-900">
       
-      {/* --- HERO SECTION --- */}
       <div className="relative h-[40vh] md:h-[50vh] w-full bg-stone-900">
         {heroImage && (
           <>
@@ -78,21 +78,16 @@ export default function ParkDetail() {
         </div>
       </div>
 
-      {/* --- MAIN CONTENT GRID --- */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         
-        {/* Back Navigation */}
         <Link to="/" className="inline-flex items-center text-emerald-700 hover:text-emerald-800 font-bold mb-8 transition-colors">
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-          Back to Explorer
+          ← Back to Explorer"
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
-          {/* LEFT COLUMN: Deep Reading */}
+
           <div className="lg:col-span-2 space-y-12">
             
-            {/* Description */}
             <section>
               <h2 className="text-3xl font-bold text-stone-900 mb-6">About the Park</h2>
               <p className="text-stone-700 leading-relaxed text-lg">
@@ -100,7 +95,7 @@ export default function ParkDetail() {
               </p>
             </section>
 
-            {/* Operating Hours */}
+
             {park.operatingHours && park.operatingHours.length > 0 && (
               <section>
                 <h2 className="text-2xl font-bold text-stone-900 mb-6 border-t border-stone-200 pt-8">Operating Hours & Seasons</h2>
@@ -115,27 +110,39 @@ export default function ParkDetail() {
               </section>
             )}
 
-            {/* Weather Information */}
             {park.weatherInfo && (
               <section>
                 <h2 className="text-2xl font-bold text-stone-900 mb-4 border-t border-stone-200 pt-8">Weather & Climate</h2>
                 <p className="text-stone-700 leading-relaxed mb-4">
                   {park.weatherInfo}
                 </p>
-                {/* Standardized NPS Weather Link */}
                 <a 
                   href={`https://www.nps.gov/${park.parkCode}/planyourvisit/weather.htm`}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-emerald-700 hover:text-emerald-900 font-semibold"
                 >
-                  Check Current Weather Conditions 
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                  Check Current Weather Conditions ⤴︎
                 </a>
               </section>
             )}
 
-            {/* Photo Gallery */}
+            {activities.length > 0 && (
+              <section className="border-t border-stone-200 pt-8 mt-8">
+                <h2 className="text-2xl font-bold text-stone-900 mb-6">Activities</h2>
+                <div className="flex flex-wrap gap-2 md:gap-3">
+                  {activities.map((activity) => (
+                    <span
+                      key={activity.id}
+                      className="bg-neutral-100 text-gold-800 border border-white-200 px-2 py-2 rounded-full text-sm font-medium shadow-sm"
+                      >
+                        {activity.name}
+                      </span>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {galleryImages.length > 0 && (
               <section className="border-t border-stone-200 pt-8">
                 <h2 className="text-2xl font-bold text-stone-900 mb-6">Gallery</h2>
@@ -154,19 +161,19 @@ export default function ParkDetail() {
             )}
           </div>
 
-          {/* RIGHT COLUMN: Quick Facts Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6 sticky top-24">
               
-              {/* Primary Action Buttons */}
               <div className="flex flex-col gap-3">
                 {park.url && (
-                  <a href={park.url} target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-stone-900 hover:bg-black text-white text-center font-bold rounded-xl transition-colors shadow-md">
+                  <a href={park.url} target="_blank" rel="noopener noreferrer" className="w-full py-4
+                   bg-stone-900 hover:bg-black text-white text-center font-bold rounded-xl transition-colors shadow-md">
                     Visit Official Park Site
                   </a>
                 )}
                 {park.directionsUrl && (
-                  <a href={park.directionsUrl} target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-emerald-700 hover:bg-emerald-800 text-white text-center font-bold rounded-xl transition-colors shadow-md">
+                  <a href={park.directionsUrl} target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-emerald-700 
+                  hover:bg-emerald-800 text-white text-center font-bold rounded-xl transition-colors shadow-md">
                     Get Directions & Maps
                   </a>
                 )}
@@ -174,11 +181,9 @@ export default function ParkDetail() {
 
               <div className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 space-y-8">
                 
-                {/* Entrance Fees */}
                 {park.entranceFees && park.entranceFees.length > 0 && (
                   <div>
                     <h3 className="text-lg font-bold text-stone-900 mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" /></svg>
                       Entrance Fees
                     </h3>
                     <ul className="space-y-3">
@@ -192,7 +197,6 @@ export default function ParkDetail() {
                   </div>
                 )}
 
-                {/* Entrance Passes */}
                 {park.entrancePasses && park.entrancePasses.length > 0 && (
                   <div>
                     <h3 className="text-lg font-bold text-stone-900 mb-4">Annual Passes</h3>
@@ -207,11 +211,9 @@ export default function ParkDetail() {
                   </div>
                 )}
 
-                {/* Contact Information */}
                 {(voicePhone || email) && (
                   <div>
                     <h3 className="text-lg font-bold text-stone-900 mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                       Contact Info
                     </h3>
                     <div className="space-y-2 text-sm text-stone-600">
